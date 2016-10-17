@@ -81,11 +81,6 @@ public class PlayerService {
             System.out.println("MAX Assists: "+player[8]+" - "+playerRepository.findByAssists((int)player[8]));
             System.out.println("MIN Assists: "+player[9]+" - "+playerRepository.findByAssists((int)player[9]));
         }
-
-
-
-
-
     }
 
 }

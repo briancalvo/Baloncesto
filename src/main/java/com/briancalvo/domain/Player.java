@@ -19,6 +19,8 @@ public class Player {
     private int assists;
     private int rebounds;
     private String position;
+    @ManyToOne // un jugador sólo puede pertenecer a un equipo
+    private Team team;
 
     /* Constructores */
 
