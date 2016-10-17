@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -22,9 +23,20 @@ public interface PlayerRepository extends JpaRepository<Player,Long>{
 
     List<Player> findByPosition(String position);
 
-    List<Player> findByDateLessThan(String date);
+    List<Player> findByDateGreaterThan(LocalDate date);
+
+    List<Player> findByPoints(Integer points);
+
+    List<Player> findByRebounds(Integer rebounds);
+
+    List<Player> findByAssists(Integer assists);
 
     // JPL Queries
 
+    @Query("SELECT player.position,AVG(player.points),AVG(player.rebounds),AVG(player.assists) from Player player GROUP BY player.position")
+    List<Object[]> AvgPointsReboundsAssistsPerPosition();
+
+    @Query("SELECT player.position,AVG(player.points),MAX(player.points),MIN(player.points),AVG(player.rebounds),MAX(player.rebounds),MIN(player.rebounds),AVG(player.assists),MAX(player.assists),MIN(player.assists) FROM Player player GROUP BY player.position")
+    List<Object[]> AvgMaxMinPointsReboundsAssistsPerPosition();
 
 }

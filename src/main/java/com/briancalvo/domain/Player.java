@@ -1,6 +1,7 @@
 package com.briancalvo.domain;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
  * Created by Brian on 10/10/2016.
@@ -13,7 +14,7 @@ public class Player {
     private long id;
     private String name;
     private String surname;
-    private String date;
+    private LocalDate date;
     private int points;
     private int assists;
     private int rebounds;
@@ -21,7 +22,7 @@ public class Player {
 
     /* Constructores */
 
-    public Player(long id,String name,String surname,String date, int points, int assists, int rebounds, String position) {
+    public Player(long id, String name, String surname, LocalDate date, int points, int assists, int rebounds, String position) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -49,7 +50,7 @@ public class Player {
         return surname;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -83,7 +84,7 @@ public class Player {
         this.surname = surname;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -105,8 +106,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player: " + name + " " + surname + ", Born:" + date + ", Points:" + points +", Assists:" + assists +
-                ", Rebounds:" + rebounds +
-                ", Position:" + position;
+        return name + " " + surname;
     }
 }
