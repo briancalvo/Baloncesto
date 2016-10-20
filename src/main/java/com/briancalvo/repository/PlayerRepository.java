@@ -1,6 +1,7 @@
 package com.briancalvo.repository;
 
 import com.briancalvo.domain.Player;
+import com.briancalvo.domain.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -38,5 +39,8 @@ public interface PlayerRepository extends JpaRepository<Player,Long>{
 
     @Query("SELECT player.position,AVG(player.points),MAX(player.points),MIN(player.points),AVG(player.rebounds),MAX(player.rebounds),MIN(player.rebounds),AVG(player.assists),MAX(player.assists),MIN(player.assists) FROM Player player GROUP BY player.position")
     List<Object[]> AvgMaxMinPointsReboundsAssistsPerPosition();
+
+    @Query("SELECT player FROM Player player WHERE player.team = :team")
+    List<Player> findPlayerByTeam(@Param("team") Team team);
 
 }

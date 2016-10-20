@@ -1,7 +1,9 @@
 package com.briancalvo.service;
 
 import com.briancalvo.domain.Player;
+import com.briancalvo.domain.Team;
 import com.briancalvo.repository.PlayerRepository;
+import com.briancalvo.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,18 @@ public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @Autowired
+    private TeamRepository teamRepository;
+
     public void testPlayers(){
 
         Player player1 = new Player(1,"Lebron","James",LocalDate.of(1984,12,30),26649,6909,7106,"ala-pivot");
+        Team team1 = teamRepository.findByNameLike("Cleveland");
+        player1.setTeam(team1);
         playerRepository.save(player1);
 
         Player player2 = new Player(2,"Kevin","Durant",LocalDate.of(1988,9,29),17563,2371,4487,"alero");
+        player2.setTeam(team1);
         playerRepository.save(player2);
 
         Player player3 = new Player(3,"Anthony","Davis",LocalDate.of(1993,3,11),2266,170,1192,"ala-pivot");
@@ -81,6 +89,7 @@ public class PlayerService {
             System.out.println("MAX Assists: "+player[8]+" - "+playerRepository.findByAssists((int)player[8]));
             System.out.println("MIN Assists: "+player[9]+" - "+playerRepository.findByAssists((int)player[9]));
         }
+        System.out.println("The player of Cleveland are" +playerRepository.findPlayerByTeam(team1));
     }
 
 }

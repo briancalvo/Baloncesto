@@ -21,7 +21,8 @@ public class Team {
 
     /* Constructores */
 
-    public Team(String name, String location, LocalDate founded) {
+    public Team(long id,String name, String location, LocalDate founded) {
+        this.id = id;
         this.name = name;
         this.location = location;
         this.founded = founded;

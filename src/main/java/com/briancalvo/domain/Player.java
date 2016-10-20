@@ -68,9 +68,9 @@ public class Player {
         return rebounds;
     }
 
-    public String getPosition() {
-        return position;
-    }
+    public String getPosition() { return position; }
+
+    public Team getTeam() { return team; }
 
     /* Setters */
 
@@ -104,6 +104,10 @@ public class Player {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     @Override
