@@ -43,4 +43,12 @@ public interface PlayerRepository extends JpaRepository<Player,Long>{
     @Query("SELECT player FROM Player player WHERE player.team = :team")
     List<Player> findPlayerByTeam(@Param("team") Team team);
 
+    @Query("SELECT player from Player player WHERE player.team = :team AND player.position = :position")
+    List<Player> findPlayerPositionByTeam(@Param("team") Team team, @Param("position") String position);
+
+    @Query("SELECT player from Player player WHERE player.team = :team AND player.points IN (SELECT MAX(player.points) from Player player)")
+    List<Player> findMaxPointsPlayerByTeam(@Param("team") Team team);
+
+
+
 }

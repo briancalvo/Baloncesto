@@ -69,12 +69,7 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", founded=" + founded +
-                '}';
+        return location + ' ' + name;
     }
 
     @Override
