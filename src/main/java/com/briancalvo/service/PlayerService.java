@@ -111,7 +111,7 @@ public class PlayerService {
         System.out.println("The player of Cleveland Cavaliers on ala-pivot position are: "+playerRepository.findPlayerPositionByTeam(team1,"ala-pivot"));
 
         System.out.println("");
-        System.out.println("The max points player of Cleveland Cavaliers is: "+playerRepository.findMaxPointsPlayerByTeam(team1));
+        System.out.println("The max points player of Cleveland Cavaliers is: "+playerRepository.findMaxPointsPlayerByTeam(team2));
     }
 
 }
