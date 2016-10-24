@@ -24,6 +24,8 @@ public interface PlayerRepository extends JpaRepository<Player,Long>{
 
     List<Player> findByPosition(String position);
 
+    List<Player> findByAssistsGreaterThan(Integer assists);
+
     List<Player> findByDateGreaterThan(LocalDate date);
 
     List<Player> findByPoints(Integer points);
