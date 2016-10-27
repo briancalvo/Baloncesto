@@ -14,25 +14,17 @@ public class Player {
     private long id;
     private String name;
     private String surname;
-    private LocalDate date;
     private int points;
-    private int assists;
-    private int rebounds;
-    private String position;
-    @ManyToOne // un jugador sólo puede pertenecer a un equipo
-    private Team team;
+    // @ManyToOne // un jugador sólo puede pertenecer a un equipo
+    // private Team team;
 
     /* Constructores */
 
-    public Player(long id, String name, String surname, LocalDate date, int points, int assists, int rebounds, String position) {
+    public Player(long id, String name, String surname, int points) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.date = date;
         this.points = points;
-        this.assists = assists;
-        this.rebounds = rebounds;
-        this.position = position;
     }
 
     public Player(){
@@ -52,25 +44,11 @@ public class Player {
         return surname;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
     public int getPoints() {
         return points;
     }
 
-    public int getAssists() {
-        return assists;
-    }
-
-    public int getRebounds() {
-        return rebounds;
-    }
-
-    public String getPosition() { return position; }
-
-    public Team getTeam() { return team; }
+    // public Team getTeam() { return team; }
 
     /* Setters */
 
@@ -86,29 +64,11 @@ public class Player {
         this.surname = surname;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public void setPoints(int points) {
         this.points = points;
     }
 
-    public void setAssists(int assists) {
-        this.assists = assists;
-    }
-
-    public void setRebounds(int rebounds) {
-        this.rebounds = rebounds;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
+    // public void setTeam(Team team) {this.team = team;}
 
     @Override
     public String toString() {
