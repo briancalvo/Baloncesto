@@ -31,9 +31,9 @@ public class PlayerController {
         return playerRepository.findAll();
     }
 
-    @RequestMapping(value = "/byPoints/{num}",
+    @RequestMapping(value = "/byAssists/{num}",
             method = RequestMethod.GET)
-    public List<Player> findByPointsGreaterThan(@PathVariable Integer num){
-        return playerRepository.findByPointsGreaterThan(num);
+    public List<Player> findByAssistsGreater(@PathVariable Integer num){
+        return playerRepository.findByAssistsGreaterThan(num);
     }
 }
