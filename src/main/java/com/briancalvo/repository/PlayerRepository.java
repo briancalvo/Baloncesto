@@ -20,6 +20,8 @@ public interface PlayerRepository extends JpaRepository<Player,Long>{
 
     List<Player> findByPointsGreaterThanEqual(Integer points);
 
+    List<Player> findByPointsBetween(Integer min,Integer max);
+
     List<Player> findByAssistsBetween(Integer min, Integer max);
 
     List<Player> findByPosition(String position);
@@ -33,6 +35,8 @@ public interface PlayerRepository extends JpaRepository<Player,Long>{
     List<Player> findByRebounds(Integer rebounds);
 
     List<Player> findByAssists(Integer assists);
+
+    List<Player> findAllByOrderByPointsDesc();
 
     // JPL Queries
 
@@ -50,6 +54,11 @@ public interface PlayerRepository extends JpaRepository<Player,Long>{
 
     @Query("SELECT player from Player player WHERE player.team = :team AND player.points IN (SELECT MAX(player.points) FROM Player player WHERE player.team = :team)")
     List<Player> findMaxPointsPlayerByTeam(@Param("team") Team team);
+
+    @Query("SELECT player.position,MIN(player.points),MAX(player.points),AVG(player.points) from Player player GROUP BY player.position")
+    List<Object[]> findByPositionAndAverage();
+
+
 
 
 

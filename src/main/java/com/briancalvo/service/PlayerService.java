@@ -24,35 +24,35 @@ public class PlayerService {
 
     public void testPlayers(){
 
-        Player player1 = new Player(1,"Lebron","James",LocalDate.of(1984,12,30),26649,6909,7106,"ala-pivot");
+        Player player1 = new Player(1L,"Lebron","James",LocalDate.of(1984,12,30),26649,6909,7106,"ala-pivot");
         Team team1 = teamRepository.findByNameLike("Cavaliers");
         player1.setTeam(team1);
         playerRepository.save(player1);
 
-        Player player2 = new Player(2,"Kevin","Durant",LocalDate.of(1988,9,29),17563,2371,4487,"alero");
+        Player player2 = new Player(2L,"Kevin","Durant",LocalDate.of(1988,9,29),17563,2371,4487,"alero");
         Team team2 = teamRepository.findByNameLike("Warriors");
         player2.setTeam(team2);
         playerRepository.save(player2);
 
-        Player player3 = new Player(3,"Anthony","Davis",LocalDate.of(1993,3,11),2266,170,1192,"ala-pivot");
+        Player player3 = new Player(3L,"Anthony","Davis",LocalDate.of(1993,3,11),2266,170,1192,"ala-pivot");
         Team team3 = teamRepository.findByNameLike("Pelicans");
         player3.setTeam(team3);
         playerRepository.save(player3);
 
-        Player player4 = new Player(4,"Stephen","Curry",LocalDate.of(1988,3,14),11088,3415,2128,"base");
+        Player player4 = new Player(4L,"Stephen","Curry",LocalDate.of(1988,3,14),11088,3415,2128,"base");
         player4.setTeam(team2);
         playerRepository.save(player4);
 
-        Player player5 = new Player(5,"James","Harden",LocalDate.of(1989,8,26),8904,1988,1943,"escolta");
+        Player player5 = new Player(5L,"James","Harden",LocalDate.of(1989,8,26),8904,1988,1943,"escolta");
         Team team4 = teamRepository.findByNameLike("Rockets");
         player5.setTeam(team4);
         playerRepository.save(player5);
 
-        Player player6 = new Player(6,"Kevin","Love",LocalDate.of(1988,9,7),9442,1238,5985,"ala-pivot");
+        Player player6 = new Player(6L,"Kevin","Love",LocalDate.of(1988,9,7),9442,1238,5985,"ala-pivot");
         player6.setTeam(team1);
         playerRepository.save(player6);
 
-        Player player7 = new Player(7,"Kyrie","Irving",LocalDate.of(1992,3,23),6458,1699,1050,"base");
+        Player player7 = new Player(7L,"Kyrie","Irving",LocalDate.of(1992,3,23),6458,1699,1050,"base");
         player7.setTeam(team1);
         playerRepository.save(player7);
 
