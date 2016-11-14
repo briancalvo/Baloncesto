@@ -1,5 +1,7 @@
 package com.briancalvo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -14,6 +16,7 @@ public class Player {
     private Long id;
     private String name;
     private String surname;
+    @JsonIgnore
     private LocalDate date;
     private int points;
     private int assists;

@@ -1,5 +1,7 @@
 package com.briancalvo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Team {
     private long id;
     private String name;
     private String location;
+    @JsonIgnore
     private LocalDate founded;
 
     /* Constructores */

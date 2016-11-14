@@ -4,8 +4,10 @@ import com.briancalvo.domain.DTO.PositionStatistics;
 import com.briancalvo.domain.Player;
 import com.briancalvo.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -26,11 +28,20 @@ public class PlayerController {
          return playerRepository.save(player);
     }
 
-    @GetMapping
-    public List<Player> findAll() {
-        return playerRepository.findAll();
-    }
+//    @GetMapping
+//    public List<Player> findAll() {
+//        return playerRepository.findAll();
+//    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Player> findById(@PathVariable Long id){
+        Player player = playerRepository.findOne(id);
+        if (player!=null){
+            return new ResponseEntity<Player>(player,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<Player>(HttpStatus.NOT_FOUND);
+        }
+    }
     @GetMapping("/orderByPoints")
     public List<Player> findByPointsOrderByPointsDesc(){
         return playerRepository.findAllByOrderByPointsDesc();
@@ -70,6 +81,27 @@ public class PlayerController {
     @GetMapping("/byAssists/{num}")
     public List<Player> findByAssistsGreater(@PathVariable Integer num){
         return playerRepository.findByAssistsGreaterThan(num);
+    }
+
+    // T0D0 Gestión de errores cuando el parametro de ordenación es invalido.
+    @GetMapping
+    public List<Player> findAllOrderBy(
+            @RequestParam(
+                name = "orderBy", required = false) String orderBy,
+            @RequestParam(
+                name = "direction",defaultValue = "ASC") String direction
+            ){
+        if(orderBy != null) {
+            Sort sort;
+            if (direction.equals("ASC")){
+                sort = new Sort(Sort.Direction.ASC, orderBy);
+            }
+            else{
+                sort = new Sort(Sort.Direction.DESC, orderBy);
+            }
+            return playerRepository.findAll(sort);
+        }
+        return playerRepository.findAll();
     }
 
 }
