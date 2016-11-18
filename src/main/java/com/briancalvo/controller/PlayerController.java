@@ -1,15 +1,17 @@
 package com.briancalvo.controller;
 
-import com.briancalvo.domain.DTO.PositionStatistics;
+import com.briancalvo.controller.DTO.PositionStatistics;
+import com.briancalvo.controller.util.HeaderUtil;
 import com.briancalvo.domain.Player;
 import com.briancalvo.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 
 /**
@@ -24,8 +26,18 @@ public class PlayerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Player createPlayer(@RequestBody Player player){
-         return playerRepository.save(player);
+    public ResponseEntity<Player> createPlayer(@RequestBody Player player) throws URISyntaxException {
+        if (player.getId() != null) {
+            return ResponseEntity.
+                    badRequest().
+                    headers(
+                            HeaderUtil.
+                                    createFailureAlert("player", "idexists", "A new player cannot already have an ID")).body(null);
+        }
+        Player result = playerRepository.save(player);
+        return ResponseEntity.created(new URI("/players/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert("player", result.getId().toString()))
+                .body(result);
     }
 
 //    @GetMapping
